@@ -30,7 +30,15 @@ namespace Utilities
         /// <summary>
         /// File Contents are stored as plain text that adheres to the XML/XSD Specifications.
         /// </summary>
-        XML
+        XML,
+        /// <summary>
+        /// Read Function requires a File Name instead of raw data.
+        /// </summary>
+        FileName,
+        /// <summary>
+        /// Read Function requuires a Directory Name instead of raw data.
+        /// </summary>
+        DirectoryName
     }
 
     /// <summary>
@@ -96,7 +104,11 @@ namespace Utilities
         DatabaseACD,
         DatabaseDDP,
         DatabaseFCD,
+        DatabaseFED,
         DatabaseICD,
+        DatabaseOCD,
+        DatabasePDX,
+        DatabasePHD,
         DatabaseRCD,
         DatabaseRKT,
         DatabaseRWD,

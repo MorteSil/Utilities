@@ -107,8 +107,7 @@ namespace Utilities
         {
             try
             {
-                ArgumentException.ThrowIfNullOrWhiteSpace(fileName);
-                if (!File.Exists(fileName)) throw new FileNotFoundException("The file " + fileName + "could not be found.");
+                ArgumentException.ThrowIfNullOrWhiteSpace(fileName);               
 
                 bool result = false;
                 switch (_StreamType)
@@ -116,12 +115,14 @@ namespace Utilities
                     case FileStreamType.XML:
                     case FileStreamType.Text:
                         {
+                            if (!File.Exists(fileName)) throw new FileNotFoundException("The file " + fileName + "could not be found.");
                             result = Read(File.ReadAllText(fileName));
 
                             break;
                         }
                     case FileStreamType.Binary:
                         {
+                            if (!File.Exists(fileName)) throw new FileNotFoundException("The file " + fileName + "could not be found.");
                             result = Read(File.ReadAllBytes(fileName));
 
                             break;
@@ -129,8 +130,22 @@ namespace Utilities
                         }
                     case FileStreamType.ProtoBuff:
                         {
+                            if (!File.Exists(fileName)) throw new FileNotFoundException("The file " + fileName + "could not be found.");
                             string msg = "Protobuff Read functionality has not been fully implemented yet.";
                             throw new NotImplementedException(msg);
+                        }
+                    case FileStreamType.FileName:
+                        {
+                            if (!File.Exists(fileName)) throw new FileNotFoundException("The file " + fileName + "could not be found.");
+                            result = Read(fileName);
+                            break;
+
+                        }
+                    case FileStreamType.DirectoryName:
+                        {
+                            if (!Directory.Exists(fileName)) throw new FileNotFoundException("The file " + fileName + "could not be found.");
+                            result = Read(fileName);
+                            break;
                         }
                 }
 
@@ -162,6 +177,12 @@ namespace Utilities
 
             try
             {
+                if (FileType == ApplicationFileType.DatabaseOCD)
+                {
+                    Write();
+                    return true;
+                }
+                    
                 byte[] data = Write();
 
                 if (data is null || data.Length == 0) return false;

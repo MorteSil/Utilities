@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection;
+using System.Text;
 
 namespace Utilities.Logging
 {
@@ -12,7 +13,7 @@ namespace Utilities.Logging
         /// </summary>
         /// <param name="ex">An <see cref="Exception"/> that with information that needs to be included in the log file.</param>
         /// <param name="details">Optional additional details that can be added to the Log Entry</param>
-        /// <param name="logFolder">Log Output Folder. If none is supplied, the default location is [User]\ApplicationData\[ApplicationName]\</param>
+        /// <param name="logFolder">Log Output Folder. If none is supplied, the default location is a Logs Directory created in the Application Installation Directory.\</param>
         /// <param name="appendToExisting">When <see langword="true"/>, the logger will append the log to an existing log file with the current Date Value.</param>
         /// <param name="severity">The severity of the issue being logged.</param>
         public static void CreateLogFile(Exception? ex, string? details = null, string? logFolder=null, bool appendToExisting = false, LogSeverity severity = LogSeverity.Error)
@@ -23,7 +24,7 @@ namespace Utilities.Logging
             // Setup the target location.
             string outputFolder = logFolder ?? string.Empty;
             string outputFile = (appendToExisting ? timeStamp.ToString("yyyy-MM-dd") : timeStamp.ToString("yyyy-MM-dd-hh-mm-ss"));
-            if (string.IsNullOrEmpty(outputFolder)) { outputFolder = Environment.SpecialFolder.ApplicationData + "\\" + AppDomain.CurrentDomain.FriendlyName + "\\Logs\\"; }
+            if (string.IsNullOrEmpty(outputFolder)) { outputFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\Logs\\"; }
 
             string fileName = outputFolder + outputFile;
             // Create the File if needed and setup the FileInfo       
