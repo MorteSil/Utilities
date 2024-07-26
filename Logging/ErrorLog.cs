@@ -24,10 +24,12 @@ namespace Utilities.Logging
             // Setup the target location.
             string outputFolder = logFolder ?? string.Empty;
             string outputFile = (appendToExisting ? timeStamp.ToString("yyyy-MM-dd") : timeStamp.ToString("yyyy-MM-dd-hh-mm-ss"));
-            if (string.IsNullOrEmpty(outputFolder)) { outputFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\Logs\\"; }
+            if (string.IsNullOrEmpty(outputFolder)) { outputFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\Logs"; }
 
-            string fileName = outputFolder + outputFile;
-            // Create the File if needed and setup the FileInfo       
+            string fileName = outputFolder + "\\" + outputFile;
+            // Create the File if needed and setup the FileInfo
+            if (!Directory.Exists(outputFolder))
+                Directory.CreateDirectory(outputFolder);
             if (!File.Exists(fileName + ".log"))
                 File.Create(fileName + ".log").Close();
             else
