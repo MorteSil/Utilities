@@ -40,7 +40,8 @@ namespace Utilities.Logging
                     int i = 1;
                     while (File.Exists(fileName + "_" + i++ + ".log"))
                         ;
-                    File.Create(fileName + "_" + i + ".log").Close();
+                    fileName += "_" + i + ".log";
+                    File.Create(fileName).Close();
                 }
             }
 
