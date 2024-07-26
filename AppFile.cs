@@ -1,4 +1,5 @@
 ﻿using System.Security;
+using System.Xml;
 
 namespace Utilities
 {
@@ -60,6 +61,7 @@ namespace Utilities
         protected FileInfo? _FileInfo;
         protected bool _IsCompressed = false;
         protected int _InitialHash = 0;
+        protected string _OutputFolder = "";
         #endregion Fields
 
         #region Helper Methods
@@ -177,17 +179,23 @@ namespace Utilities
 
             try
             {
-                if (FileType == ApplicationFileType.DatabaseOCD)
-                {
-                    Write();
-                    return true;
-                }
-                    
+                // This is not designed to write multiple files or locations with a single call so these stream types need to be overridden
+                if (_StreamType == FileStreamType.FileName || _StreamType == FileStreamType.DirectoryName)
+                    throw new NotImplementedException("FileName and DirectoryName Stream Types must override Save(string) to handle writing multiple files or files in multiple locations.");
+
                 byte[] data = Write();
 
                 if (data is null || data.Length == 0) return false;
 
-                File.WriteAllBytes(fileName, data);
+                if (_StreamType == FileStreamType.XML)
+                {
+                    //Raw XML in the stream does not keep NewLine chars to save space--need to use the XmlDocument for output formatting
+                    XmlDocument xmlDoc = new ();
+                    xmlDoc.Load(new MemoryStream(data));
+                    xmlDoc.Save(fileName);
+                }                
+                else
+                    File.WriteAllBytes(fileName, data);
             }
             catch (Exception ex)
             {
