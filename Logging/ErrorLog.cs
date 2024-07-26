@@ -6,8 +6,10 @@ namespace Utilities.Logging
     /// <summary>
     /// Class containing methods to handle error logging
     /// </summary>
-    public class ErrorLog
+    public static class ErrorLog
     {
+        private static Mutex mutex = new();
+
         /// <summary>
         /// Creates a log file and includes information contained in <paramref name="ex"/>.
         /// </summary>
@@ -28,6 +30,7 @@ namespace Utilities.Logging
 
             string fileName = outputFolder + "\\" + outputFile;
             // Create the File if needed and setup the FileInfo
+            mutex.WaitOne();
             if (!Directory.Exists(outputFolder))
                 Directory.CreateDirectory(outputFolder);
             if (!File.Exists(fileName + ".log"))
@@ -47,7 +50,7 @@ namespace Utilities.Logging
 
             //Write the data to the file
             WriteLog(CreateEntry(ex, details, appendToExisting, severity, timeStamp), fileName, appendToExisting);
-
+            mutex.ReleaseMutex();
         }
 
         /// <summary>
