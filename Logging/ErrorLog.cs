@@ -18,7 +18,7 @@ namespace Utilities.Logging
         /// <param name="logFolder">Log Output Folder. If none is supplied, the default location is a Logs Directory created in the Application Installation Directory.\</param>
         /// <param name="appendToExisting">When <see langword="true"/>, the logger will append the log to an existing log file with the current Date Value.</param>
         /// <param name="severity">The severity of the issue being logged.</param>
-        public static void CreateLogFile(Exception? ex, string? details = null, string? logFolder=null, bool appendToExisting = false, LogSeverity severity = LogSeverity.Error)
+        public static void CreateLogFile(Exception? ex, string? details = null, string? logFolder=null, bool appendToExisting = true, LogSeverity severity = LogSeverity.Error)
         {
             // DateTime the event occurred
             DateTime timeStamp = DateTime.Now;
@@ -60,7 +60,7 @@ namespace Utilities.Logging
         /// <param name="logFolder">Log Output Folder. If none is supplied, the default location is [User]\ApplicationData\[ApplicationName]\Logs\</param>
         /// <param name="appendToExisting">When <see langword="true"/>, the logger will append the log to an existing log file with the current Date Value.</param>
         /// <param name="severity">The severity of the issue being logged.</param>
-        public static void CreateLogFile(string? details = null, string? logFolder=null, bool appendToExisting = false, LogSeverity severity = LogSeverity.Info)
+        public static void CreateLogFile(string? details = null, string? logFolder=null, bool appendToExisting = true, LogSeverity severity = LogSeverity.Info)
         {
             CreateLogFile(null, details, logFolder, appendToExisting, severity);
         }

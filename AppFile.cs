@@ -4,7 +4,7 @@ using System.Xml;
 namespace Utilities
 {
     /// <summary>
-    /// Base Class for all Game Files.
+    /// Base Class for all Application Files.
     /// </summary>
     public abstract class AppFile : IEquatable<AppFile>
     {
@@ -37,21 +37,16 @@ namespace Utilities
         /// <summary>
         /// When <see langword="true"/>, indicates the data within this file is stored in a compressed state using LZSS.
         /// </summary>
-        public bool IsCompressed
-        { get { return _IsCompressed; } }
+        public bool IsCompressed { get { return _IsCompressed; } }
         /// <summary>
         /// Inidicates if the underlying File has been modified.
         /// </summary>
-        public bool IsFileModified
-        {
-            get { return _InitialHash != GetHashCode(); }
-        }
+        public bool IsFileModified { get { return _InitialHash != GetHashCode(); } }
         /// <summary>
         /// <para>When <see langword="true"/>, indicates this <see cref="AppFile"/> was successfully loaded from the file.</para>
         /// <para><see langword="false"/> indicates there were no values in the initialization data used for this <see cref="AppFile"/> object and empty or default values were loaded instead.</para>
         /// </summary>       
-        public abstract bool IsDefaultInitialization
-        { get; }
+        public abstract bool IsDefaultInitialization { get; }
 
         #endregion Properties
 
@@ -153,6 +148,7 @@ namespace Utilities
 
                 if (!result) throw new SecurityException("Unable to access the file at " + fileName);
                 _FileInfo = new FileInfo(fileName);
+                _InitialHash = GetHashCode();
                 return true;
 
             }
@@ -200,16 +196,15 @@ namespace Utilities
             catch (Exception ex)
             {
                 Logging.ErrorLog.CreateLogFile(ex, "This error occurred while trying to write to " + fileName);
-                if (ex is IOException)
-                    return false;
-                if (ex is SecurityException)
-                    return false;
+                if (ex is IOException || ex is SecurityException)
+                    return false;                
                 throw;
             }
 
 
             // File successfully written   
             _FileInfo = new FileInfo(fileName);
+            _InitialHash = GetHashCode();
             // Notify caller of success
             return true;
         }
