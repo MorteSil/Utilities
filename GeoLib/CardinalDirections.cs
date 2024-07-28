@@ -5,20 +5,20 @@ namespace Utilities.GeoLib
     public enum CardinalDirection
     {
         [StringValue("N")]
-        North,
+        North = 0,
         [StringValue("NE")]
-        NorthEast,
+        NorthEast = 4,
         [StringValue("E")]
-        East,
+        East = 1,
         [StringValue("SE")]
-        SouthEast,
+        SouthEast = 5,
         [StringValue("S")]
-        South,
+        South = 2,
         [StringValue("SW")]
-        SouthWest,
+        SouthWest = 6,
         [StringValue("W")]
-        West,
+        West = 3,
         [StringValue("NW")]
-        NorthWest,
+        NorthWest = 7,
     }
 }
