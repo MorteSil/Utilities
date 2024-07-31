@@ -47,59 +47,52 @@ namespace Utilities
     public enum ApplicationFileType
     {
         NONE = -1,
-        DTCINI, // DTC File .ini
-        TEMissionINI = 1,  // Mission or TE DTC File .ini
-        CampaignINI = 1,  // Same as TEMissionINI .ini
-        CampaignCAM,  // Campaign Wrapper File .cam
-        CampaignFRC,  // Force Ration File .frc
-        CampaignHIS,  // History File .his
-        CampaignIFF,  // IFF Plan File .iff
-        CampaignCMP, // Embedded Campaign Data within CAM .cmp
-        CampaignOBJ, // Embedded Campaign Objective List within CAM .obj
-        CampaignOBD, // Embedded Campaign Objective Deltas data within CAM .obd
-        CampaignUNI, // Embedded Unit List withing CAM .uni
-        CampaignTEA, // Embedded Teams list within CAM .tea
-        CampaignEVT, // Embedded Event list within CAM .evt
-        CampaignPOL, // Embedded Primary Objectives Lisr within CAM .pol
-        CampaignPLT, // Embedded Pilot List within CAM .plt
-        CampaignPST, // Embedded Persistent Object List within CAM .pst
-        CampaignWWTH, // Embedded Weather within CAM .wth
-        CampaignVER, // Embedded Verison Info within CAM .ver
-        CampaignTE, // Embedded Victory Conditions within CAM .te
-        CampaignPROTO,
-        CampaignTWX,
-        CampaignTRI,
-        CampaignPRI, // Priotities File .pri (Attrit, CAS, Defense Intdict, Offense)
-        CampaignTAC,
-        MissionDataXML, // Sets mission Parameters for each Mission Type
-        Link16PROTO, // Link 16 Plan .txtpb
-        TrainingTRN, // Training Mission File (Same structure as CAM
-        TacticalTAC, // Tactical Engagement File (Same structure as CAM
-        TheaterMAP,
-        TheaterNAM,
-        TheaterPAK,
-        TheaterTHR,
-        TheaterTM,
-        TheaterIRC, // Necessary?
-        TheaterMEA,
-        WeatherINI,
-        StationsDAT,
-        WeatherFMAP,
-        ListLST,
-        ACDAT,
-        ACPROTO,
-        ACAFM,
-        BombDAT,
-        MissileDAT,
-        RadarDAT,
-        SensorIRS,
-        SensorRWR,
-        SensorVSS,
-        VehicleVEH,
-        SignatureFile,
+
+        AcDAT,
+        AcAFM,
+        ACPROTO, 
+        ACTypesLST,        
+        ATCAirbaseLST,
         ATCDAT,
         BMSCFG,
         BMSUserCFG,
+        BombDAT,
+        BombTypesLST,
+        CampaignAII,        
+        CampaignCAM,  // Campaign Wrapper File .cam
+        CampaignCMP, // Embedded Campaign Data within CAM .cmp
+        CampaignEVT, // Embedded Event list within CAM .evt
+        CampaignFRC,  // Force Ration File .frc
+        CampaignHIS,  // History File .his
+        CampaignIFF,  // IFF Plan File .iff
+        CampaignINI,  // Same as TEMissionINI .ini
+        TEMissionINI = CampaignINI,  // Mission or TE DTC File .ini
+        CampaignInvalidAC,
+        CampaignL16,
+        CampaignMissionData, // Sets mission Parameters for each Mission Type
+        CampaignOBJ, // Embedded Campaign Objective List within CAM .obj
+        CampaignOBD, // Embedded Campaign Objective Deltas data within CAM .obd
+        CampaignPLT, // Embedded Pilot List within CAM .plt
+        CampaignPOL, // Embedded Primary Objectives Lisr within CAM .pol
+        CampaignPRI, // Priotities File .pri (Attrit, CAS, Defense Intdict, Offense)
+        CampaignPROTO,
+        CampaignPST, // Embedded Persistent Object List within CAM .pst
+        CampaignRAD, // radiomap.dat
+        CampaignRT,
+        CampaignStrings,
+        CampaignTAC,
+        CampaignTE, // Embedded Victory Conditions within CAM .te
+        CampaignTEA, // Embedded Teams list within CAM .tea
+        CampaignTENavalUnits,
+        CampaignTEPlanes,
+        CampaignTEUnits,
+        CampaignTRI,
+        CampaignTT,
+        CampaignTWX,
+        CampaignUNI, // Embedded Unit List withing CAM .uni
+        CampaignVER, // Embedded Verison Info within CAM .ver
+        CampaignWeatherCells,
+        CampaignWTH, // Embedded Weather within CAM .wth
         DatabaseCT,
         DatabaseACD,
         DatabaseDDP,
@@ -118,6 +111,46 @@ namespace Utilities
         DatabaseVCD,
         DatabaseVSD,
         DatabaseWCD,
-        DatabaseWLD
+        DatabaseWLD,
+        DTCINI, // DTC File .ini
+        FormDatFIL,
+        IRSTLST,
+        Link16PROTO, // Link 16 Plan .txtpb
+        ListLST,
+        MissileDAT,
+        MisTypesLST,
+        RadarDAT,
+        RadTypesLST,
+        RWRLST,
+        SensorIRS,
+        SensorRWR,
+        SensorVSS,
+        SIGDATALAST,
+        SignatureFile,
+        StationsDAT,
+        TacticalTAC, // Tactical Engagement File (Same structure as CAM
+        TerrainBUL,
+        TerrainHDR,
+        TerrainNRM,
+        TerrainSBI,
+        TerrainTID,
+        TextureBIN,
+        TheaterMAP,
+        TheaterNAM,
+        TheaterPAK,
+        TheaterTHR,
+        TheaterTM,
+        TheaterIRC, // Necessary?
+        TheaterMEA,
+        TheaterL2,
+        TheaterO2,
+        TheaterTDF,
+        TrainingTRN, // Training Mission File (Same structure as CAM
+        VehicleLST,
+        VehicleVEH,
+        VISUALLST,
+        WeatherINI,        
+        WeatherFMAP,
+
     }
 }
